@@ -32,9 +32,7 @@ class InterfaceGrafica:
         
         self.criar_interface()
     
-    def criar_interface(self):
-        """Criar a interface gráfica"""
-        
+    def criar_interface(self):        
         # Frame principal
         main_frame = ttk.Frame(self.root, padding="10")
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
@@ -61,7 +59,6 @@ class InterfaceGrafica:
         self.label_status = ttk.Label(frame_dados, text="Nenhum sistema carregado", foreground="red")
         self.label_status.grid(row=1, column=0, columnspan=4, pady=5)
         
-        # ===== SEÇÃO 2: SELECIONAR MÉTODO =====
         frame_metodo = ttk.LabelFrame(main_frame, text="2. Selecionar Método", padding="10")
         frame_metodo.grid(row=1, column=0, sticky=(tk.W, tk.E), pady=5)
         
@@ -113,7 +110,6 @@ class InterfaceGrafica:
         self.texto_resultado.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
     
     def carregar_sistema_completo(self):
-        """Carregar matriz A e vetor b de um único arquivo"""
         arquivo = filedialog.askopenfilename(
             title="Selecionar arquivo com sistema completo [A|b]",
             filetypes=[("Arquivos de texto", "*.txt"), ("Todos os arquivos", "*.*")]
@@ -147,7 +143,6 @@ class InterfaceGrafica:
                 messagebox.showerror("Erro", f"Erro ao carregar arquivo:\n{str(e)}\n\nDica: Use frações no formato a/b (exemplo: 1/2, -3/4)")
     
     def carregar_matriz_a(self):
-        """Carregar apenas a matriz A"""
         arquivo = filedialog.askopenfilename(
             title="Selecionar arquivo com matriz A",
             filetypes=[("Arquivos de texto", "*.txt"), ("Todos os arquivos", "*.*")]
@@ -186,7 +181,6 @@ class InterfaceGrafica:
                 messagebox.showerror("Erro", f"Erro ao carregar arquivo:\n{str(e)}\n\nDica: Use frações no formato a/b (exemplo: 1/2, -3/4)")
     
     def carregar_vetor_b(self):
-        """Carregar apenas o vetor b"""
         arquivo = filedialog.askopenfilename(
             title="Selecionar arquivo com vetor b",
             filetypes=[("Arquivos de texto", "*.txt"), ("Todos os arquivos", "*.*")]
@@ -225,7 +219,6 @@ class InterfaceGrafica:
                 messagebox.showerror("Erro", f"Erro ao carregar arquivo:\n{str(e)}\n\nDica: Use frações no formato a/b (exemplo: 1/2, -3/4)")
     
     def inserir_manual(self):
-        """Inserir sistema manualmente"""
         dialog = tk.Toplevel(self.root)
         dialog.title("Inserir Sistema Manualmente")
         dialog.geometry("650x550")
@@ -268,7 +261,6 @@ class InterfaceGrafica:
         ttk.Button(dialog, text="Confirmar", command=processar).pack(pady=10)
     
     def resolver_sistema(self):
-        """Resolver o sistema com o método selecionado"""
         if self.A is None or self.b is None:
             messagebox.showerror("Erro", "Carregue um sistema linear primeiro!")
             return
@@ -327,7 +319,6 @@ class InterfaceGrafica:
             self.texto_resultado.insert(tk.END, f"ERRO INESPERADO:\n{str(e)}")
     
     def exibir_resultado(self, resultado, metodo):
-        """Exibir resultado na interface"""
         self.texto_resultado.delete('1.0', tk.END)
         
         # Título
